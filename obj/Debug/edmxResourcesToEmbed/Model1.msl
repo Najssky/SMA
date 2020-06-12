@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SMAdbModelStoreContainer" CdmEntityContainer="SMAdbEntities">
+    <EntitySetMapping Name="Magazyn">
+      <EntityTypeMapping TypeName="SMAdbModel.Magazyn">
+        <MappingFragment StoreEntitySet="Magazyn">
+          <ScalarProperty Name="ilosc_kerami" ColumnName="ilosc_kerami" />
+          <ScalarProperty Name="ilosc_gladz" ColumnName="ilosc_gladz" />
+          <ScalarProperty Name="ilosc_gladz_luks" ColumnName="ilosc_gladz_luks" />
+          <ScalarProperty Name="ilosc_grunt" ColumnName="ilosc_grunt" />
+          <ScalarProperty Name="ilosc_cement" ColumnName="ilosc_cement" />
+          <ScalarProperty Name="ilosc_tynk" ColumnName="ilosc_tynk" />
+          <ScalarProperty Name="ilosc_wylewka" ColumnName="ilosc_wylewka" />
+          <ScalarProperty Name="ilosc_stiro" ColumnName="ilosc_stiro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Przedstawiciele">
+      <EntityTypeMapping TypeName="SMAdbModel.Przedstawiciele">
+        <MappingFragment StoreEntitySet="Przedstawiciele">
+          <ScalarProperty Name="Id_sprzedawcy" ColumnName="Id_sprzedawcy" />
+          <ScalarProperty Name="Faktura" ColumnName="Faktura" />
+          <ScalarProperty Name="Klient" ColumnName="Klient" />
+          <ScalarProperty Name="NIP" ColumnName="NIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stanowiska">
+      <EntityTypeMapping TypeName="SMAdbModel.Stanowiska">
+        <MappingFragment StoreEntitySet="Stanowiska">
+          <ScalarProperty Name="Id_stanowiska" ColumnName="Id_stanowiska" />
+          <ScalarProperty Name="Stanowisko" ColumnName="Stanowisko" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uzytkownicy">
+      <EntityTypeMapping TypeName="SMAdbModel.Uzytkownicy">
+        <MappingFragment StoreEntitySet="Uzytkownicy">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="haslo" ColumnName="haslo" />
+          <ScalarProperty Name="Id_stanowiska" ColumnName="Id_stanowiska" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zamowienia">
+      <EntityTypeMapping TypeName="SMAdbModel.Zamowienia">
+        <MappingFragment StoreEntitySet="Zamowienia">
+          <ScalarProperty Name="Id_zamowienia" ColumnName="Id_zamowienia" />
+          <ScalarProperty Name="Id_sprzedawcy" ColumnName="Id_sprzedawcy" />
+          <ScalarProperty Name="ilosc_kerami" ColumnName="ilosc_kerami" />
+          <ScalarProperty Name="ilosc_gladz" ColumnName="ilosc_gladz" />
+          <ScalarProperty Name="ilosc_gladz_luks" ColumnName="ilosc_gladz_luks" />
+          <ScalarProperty Name="ilosc_grunt" ColumnName="ilosc_grunt" />
+          <ScalarProperty Name="ilosc_cement" ColumnName="ilosc_cement" />
+          <ScalarProperty Name="ilosc_tynk" ColumnName="ilosc_tynk" />
+          <ScalarProperty Name="ilosc_wylewka" ColumnName="ilosc_wylewka" />
+          <ScalarProperty Name="ilosc_stiro" ColumnName="ilosc_stiro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

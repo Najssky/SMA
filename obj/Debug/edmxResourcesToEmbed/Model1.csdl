@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SMAdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Magazyn">
+    <Key>
+      <PropertyRef Name="ilosc_kerami" />
+    </Key>
+    <Property Name="ilosc_kerami" Type="Int32" Nullable="false" />
+    <Property Name="ilosc_gladz" Type="Int32" />
+    <Property Name="ilosc_gladz_luks" Type="Int32" />
+    <Property Name="ilosc_grunt" Type="Int32" />
+    <Property Name="ilosc_cement" Type="Int32" />
+    <Property Name="ilosc_tynk" Type="Int32" />
+    <Property Name="ilosc_wylewka" Type="Int32" />
+    <Property Name="ilosc_stiro" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Przedstawiciele">
+    <Key>
+      <PropertyRef Name="Id_sprzedawcy" />
+    </Key>
+    <Property Name="Id_sprzedawcy" Type="Int32" Nullable="false" />
+    <Property Name="Faktura" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Klient" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NIP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stanowiska">
+    <Key>
+      <PropertyRef Name="Id_stanowiska" />
+    </Key>
+    <Property Name="Id_stanowiska" Type="Int32" Nullable="false" />
+    <Property Name="Stanowisko" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Uzytkownicy" Relationship="Self.FK_Uzytkownicy_Stanowiska" FromRole="Stanowiska" ToRole="Uzytkownicy" />
+  </EntityType>
+  <EntityType Name="Uzytkownicy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Imie" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Nazwisko" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="haslo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Id_stanowiska" Type="Int32" />
+    <NavigationProperty Name="Stanowiska" Relationship="Self.FK_Uzytkownicy_Stanowiska" FromRole="Uzytkownicy" ToRole="Stanowiska" />
+    <NavigationProperty Name="Zamowienia" Relationship="Self.FK_Zamowienia_ToUzytkownicy" FromRole="Uzytkownicy" ToRole="Zamowienia" />
+  </EntityType>
+  <EntityType Name="Zamowienia">
+    <Key>
+      <PropertyRef Name="Id_zamowienia" />
+    </Key>
+    <Property Name="Id_zamowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_sprzedawcy" Type="Int32" />
+    <Property Name="ilosc_kerami" Type="Int32" />
+    <Property Name="ilosc_gladz" Type="Int32" />
+    <Property Name="ilosc_gladz_luks" Type="Int32" />
+    <Property Name="ilosc_grunt" Type="Int32" />
+    <Property Name="ilosc_cement" Type="Int32" />
+    <Property Name="ilosc_tynk" Type="Int32" />
+    <Property Name="ilosc_wylewka" Type="Int32" />
+    <Property Name="ilosc_stiro" Type="Int32" />
+    <NavigationProperty Name="Uzytkownicy" Relationship="Self.FK_Zamowienia_ToUzytkownicy" FromRole="Zamowienia" ToRole="Uzytkownicy" />
+  </EntityType>
+  <Association Name="FK_Uzytkownicy_Stanowiska">
+    <End Role="Stanowiska" Type="Self.Stanowiska" Multiplicity="0..1" />
+    <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stanowiska">
+        <PropertyRef Name="Id_stanowiska" />
+      </Principal>
+      <Dependent Role="Uzytkownicy">
+        <PropertyRef Name="Id_stanowiska" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zamowienia_ToUzytkownicy">
+    <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="0..1" />
+    <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uzytkownicy">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Zamowienia">
+        <PropertyRef Name="Id_sprzedawcy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SMAdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Magazyn" EntityType="Self.Magazyn" />
+    <EntitySet Name="Przedstawiciele" EntityType="Self.Przedstawiciele" />
+    <EntitySet Name="Stanowiska" EntityType="Self.Stanowiska" />
+    <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" />
+    <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" />
+    <AssociationSet Name="FK_Uzytkownicy_Stanowiska" Association="Self.FK_Uzytkownicy_Stanowiska">
+      <End Role="Stanowiska" EntitySet="Stanowiska" />
+      <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zamowienia_ToUzytkownicy" Association="Self.FK_Zamowienia_ToUzytkownicy">
+      <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+      <End Role="Zamowienia" EntitySet="Zamowienia" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
